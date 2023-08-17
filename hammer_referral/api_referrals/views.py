@@ -1,3 +1,11 @@
-from django.shortcuts import render
+from django.contrib.auth import get_user_model
+from rest_framework import mixins, viewsets
 
-# Create your views here.
+from api_referrals.serializers import UserSerializer
+
+User = get_user_model()
+
+
+class UserViewSet(mixins.RetrieveModelMixin, viewsets.GenericViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
