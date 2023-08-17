@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "hammer-test"
+version = "0.1.0"
+description = ""
+authors = ["Кривошеев Никита <sharkbreeder@yandex.ru>"]
+readme = "README.md"
+packages = [{include = "hammer_test"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+djangorestframework = "3.14.0"
+gunicorn = "21.2.0"
+python-dotenv = "1.0.0"
+django = "4.2.3"
+
+
+[tool.poetry.group.dev.dependencies]
+flake8 = "6.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
