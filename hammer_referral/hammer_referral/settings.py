@@ -15,6 +15,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'api_auth.apps.ApiAuthConfig',
+    'api_referrals.apps.ApiReferralsConfig',
     'referrals.apps.ReferralsConfig',
 ]
 
@@ -86,4 +90,15 @@ PHONE_MAX_LENGTH = 11
 
 REFERRER_CODE_MAX_LENGTH = 6
 
+CONFIRMATION_CODE_LENGTH = 4
+
 AUTH_USER_MODEL = 'referrals.User'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ]
+}
