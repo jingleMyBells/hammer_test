@@ -1,7 +1,13 @@
+import random
+import string
+
 from django.conf import settings
 from django.contrib.auth.base_user import BaseUserManager
 
-from referrals.services import generate_referrer_code
+
+def generate_referrer_code(length):
+    symbols = string.ascii_lowercase + string.digits
+    return ''.join(random.sample(symbols, length))
 
 
 class CustomUserManager(BaseUserManager):
