@@ -8,7 +8,7 @@ class PhoneSerializer(serializers.Serializer):
     phone = serializers.CharField(required=True)
 
     def validate_phone(self, value):
-        regex = '^((\+7|7|8)+([0-9]){10})$'
+        regex = r'^((\+7|7|8)+([0-9]){10})$'
         pattern = re.compile(regex)
         if not pattern.match(value):
             raise serializers.ValidationError('Incorrect phone number')

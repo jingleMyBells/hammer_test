@@ -10,4 +10,4 @@ User = get_user_model()
 class UserViewSet(mixins.RetrieveModelMixin, viewsets.GenericViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    # permission_classes = (rest_framework.permissions.IsAuthenticated,)
+    permission_classes = (rest_framework.permissions.IsAuthenticated,)
