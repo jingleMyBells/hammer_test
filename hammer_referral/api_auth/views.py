@@ -21,7 +21,6 @@ class ConfirmationCodeRequestView(APIView):
                 phone_serializer.validated_data.get('phone'),
             )
             code = create_user_confirmation_code(user)
-            print(code)
             code_serializer = ConfirmationCodeSerializer(
                 data={'code': code},
             )
