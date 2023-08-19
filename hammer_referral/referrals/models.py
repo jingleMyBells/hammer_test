@@ -15,7 +15,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         validators=[PhoneNumberValidator],
         error_messages={
             'unique': 'Телефонный номер занят',
-        }
+        },
     )
     invitation_code = models.CharField(
         'код приглашения',
