@@ -6,7 +6,7 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 from rest_framework.authtoken.models import Token
 
-from api_auth.exceptions import PhoneNotFound, InvalidConfirmationCode
+from api_auth.exceptions import InvalidConfirmationCode
 from referrals.models import UserConfirmationCode
 
 
