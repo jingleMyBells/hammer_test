@@ -95,7 +95,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-PHONE_MAX_LENGTH = 11
+PHONE_MAX_LENGTH = 12
 
 REFERRER_CODE_MAX_LENGTH = 6
 
