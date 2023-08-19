@@ -30,7 +30,7 @@ def create_user_confirmation_code(user):
 def get_user_by_code(code):
     if not UserConfirmationCode.objects.filter(key=code).exists():
         raise InvalidConfirmationCode('Неверный код подтверждения')
-    user_code = UserConfirmationCode.objects.filter(key=code).first()
+    user_code = UserConfirmationCode.objects.select_related('user').filter(key=code).first()
     time_passed = datetime.now(timezone.utc) - user_code.create_date
     if time_passed.seconds > settings.CONFIRMATION_CODE_LIFETIME:
         raise InvalidConfirmationCode('Неверный код подтверждения')

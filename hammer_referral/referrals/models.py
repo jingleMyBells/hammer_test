@@ -68,3 +68,4 @@ class UserConfirmationCode(models.Model):
     class Meta:
         verbose_name = 'confirmation code'
         verbose_name_plural = 'confirmation codes'
+
