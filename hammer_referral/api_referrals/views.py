@@ -18,7 +18,7 @@ class UserViewSet(mixins.RetrieveModelMixin, viewsets.GenericViewSet):
     permission_classes = (rest_framework.permissions.IsAuthenticated,)
 
     @action(methods=['post'], detail=True)
-    def add_refferer(self, request, pk):
+    def add_referrer(self, request, pk):
         if request.user.pk != int(pk):
             return Response(
                 'Редактировать чужие профили нельзя',
