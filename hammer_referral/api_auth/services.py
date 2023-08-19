@@ -19,7 +19,9 @@ def generate_auth_code(length):
 
 
 def get_user_by_phone(phone):
-    user, create = User.objects.get_or_create(phone=phone)
+    if User.objects.filter(phone=phone).exists():
+        return User.objects.filter(phone=phone).first()
+    user = User.objects.create_user(phone=phone)
     return user
 
 
