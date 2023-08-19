@@ -44,3 +44,27 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_short_name(self):
         return self.phone
+
+
+class UserConfirmationCode(models.Model):
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        null=False,
+        blank=False,
+        verbose_name='user',
+        related_name='user',
+    )
+    key = models.CharField(
+        max_length=settings.CONFIRMATION_CODE_LENGTH,
+        unique=True,
+    )
+    create_date = models.DateTimeField(
+        'created',
+        null=False,
+        auto_now_add=True,
+    )
+
+    class Meta:
+        verbose_name = 'confirmation code'
+        verbose_name_plural = 'confirmation codes'
