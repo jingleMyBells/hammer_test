@@ -1,22 +1,28 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
+from referrals.models import Referring
 
 User = get_user_model()
 
 
 class UserSerializer(serializers.ModelSerializer):
-    invited_users = serializers.SerializerMethodField(method_name='get_referrals')
+    invited_users = serializers.SerializerMethodField(
+        method_name='get_referrals',
+    )
 
     class Meta:
         model = User
-        fields = ('phone', 'invited_users')
+        fields = ('phone', 'invitation_code', 'referrer_code', 'invited_users')
 
     def get_referrals(self, obj):
-        code = obj.referrer_code
         result = []
-        for user in User.objects.filter(invitation_code=code):
-            result.append(user.phone)
+        for referring in Referring.objects.select_related(
+                'referral',
+        ).filter(referrer=obj):
+            result.append(referring.referral.phone)
         return result
 
 
+class ReferrerCode(serializers.Serializer):
+    referrer_code = serializers.CharField()

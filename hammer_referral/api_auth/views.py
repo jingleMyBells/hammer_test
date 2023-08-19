@@ -6,8 +6,17 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from api_auth.exceptions import InvalidConfirmationCode, PhoneNotFound
-from api_auth.serializers import ConfirmationCodeSerializer, PhoneSerializer, TokenSerializer
-from api_auth.services import generate_token, get_user_by_code, get_user_by_phone, create_user_confirmation_code
+from api_auth.serializers import (
+    ConfirmationCodeSerializer,
+    PhoneSerializer,
+    TokenSerializer,
+)
+from api_auth.services import (
+    generate_token,
+    get_user_by_code,
+    get_user_by_phone,
+    create_user_confirmation_code,
+)
 
 User = get_user_model()
 
@@ -44,4 +53,3 @@ class TokenRequestView(APIView):
             return Response(token_serializer.data)
         except InvalidConfirmationCode as e:
             return Response(e.args, HTTPStatus.NOT_FOUND)
-
