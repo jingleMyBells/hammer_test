@@ -39,7 +39,6 @@ class ConfirmationCodeRequestView(APIView):
 
 class TokenRequestView(APIView):
     def post(self, request):
-        """Тут надо создать для юзера токен и вернуть ему"""
         code_serializer = ConfirmationCodeSerializer(data=request.data)
         code_serializer.is_valid(raise_exception=True)
         try:
